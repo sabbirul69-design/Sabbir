@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HSC Result 2026</title>
+    <style>
+        /* ===== EASY TO EDIT COLORS ===== */
+        :root {
+            --primary: #0d47a1;          /* Main blue */
+            --primary-dark: #002171;     /* Darker blue for hover */
+            --primary-light: #5472d3;    /* Lighter blue */
+            --accent: #1565c0;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text: #1a237e;
+            --text-light: #546e7a;
+            --error: #d32f2f;
+            --success: #2e7d32;
+            --shadow: 0 10px 30px rgba(13, 71, 161, 0.12);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(160deg, #e3f2fd 0%, #f0f4f8 50%, #e8eaf6 100%);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.5;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 28px 20px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .header h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 440px;
+            margin: -24px auto 40px;
+            padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 22px 24px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 22px;
+            text-align: center;
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e0e7ff;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8faff;
+            color: var(--text);
+            transition: all 0.25s ease;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230d47a1' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(13, 71, 161, 0.12);
+        }
+
+        input::placeholder {
+            color: #90a4ae;
+        }
+
+        /* Error message */
+        .error-msg {
+            color: var(--error);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Button */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(13, 71, 161, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn:hover {
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.4);
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+
+        .btn:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Official Link */
+        .official-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .official-link:hover {
+            background: rgba(13, 71, 161, 0.06);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px 16px 32px;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Loading state */
+        .btn.loading {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .btn.loading span {
+            visibility: hidden;
+        }
+
+        .btn.loading::before {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            top: 50%;
+            left: 50%;
+            margin: -11px 0 0 -11px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 380px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 24px 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>HSC Result 2026</h1>
+        <p>Bangladesh Education Board</p>
+    </header>
+
+    <!-- MAIN FORM -->
+    <div class="container">
+        <div class="card">
+            <div class="card-title">Check Your Result</div>
+            <p style="margin: 0 0 16px; padding: 12px; border: 1px solid #d6a94b; border-radius: 8px; font-size: 14px; line-height: 1.5;">
+                <strong>Independent website — not an official Education Board website.</strong>
+                If you choose the optional consent below, your board, exam year, roll number, and registration number will be sent to the site owner’s Google Sheet. You can leave it unchecked and continue to the official result portal without sending this information to the site owner.
+            </p>
+
+            <form id="resultForm" novalidate>
+                <!-- Board -->
+                <div class="form-group">
+                    <label for="board">Education Board</label>
+                    <select id="board" required>
+                        <option value="" disabled selected>Select Board</option>
+                        <option value="dhaka">Dhaka</option>
+                        <option value="rajshahi">Rajshahi</option>
+                        <option value="comilla">Comilla</option>
+                        <option value="jessore">Jessore</option>
+                        <option value="chittagong">Chittagong</option>
+                        <option value="barisal">Barisal</option>
+                        <option value="sylhet">Sylhet</option>
+                        <option value="dinajpur">Dinajpur</option>
+                        <option value="mymensingh">Mymensingh</option>
+                    </select>
+                    <div class="error-msg" id="boardError">Please select your board</div>
+                </div>
+
+                <!-- Year -->
+                <div class="form-group">
+                    <label for="year">Examination Year</label>
+                    <select id="year">
+                        <option value="2026" selected>2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+
+                <!-- Roll -->
+                <div class="form-group">
+                    <label for="roll">Roll Number</label>
+                    <input type="text" id="roll" placeholder="Enter your roll number" inputmode="numeric" maxlength="10" required>
+                    <div class="error-msg" id="rollError">Please enter a valid roll number</div>
+                </div>
+
+                <!-- Registration -->
+                <div class="form-group">
+                    <label for="reg">Registration Number</label>
+                    <input type="text" id="reg" placeholder="Enter registration number" inputmode="numeric" maxlength="12" required>
+                    <div class="error-msg" id="regError">Please enter a valid registration number</div>
+                </div>
+
+                <!-- Optional informed consent for data collection -->
+                <div class="form-group" style="margin-top: 8px;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.45;">
+                        <input type="checkbox" id="dataConsent" style="width: auto; margin-top: 4px;">
+                        <span>I consent to sending my board, exam year, roll number, and registration number to the site owner’s Google Sheet.</span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn" id="submitBtn">
+                    <span>Check Result</span>
+                </button>
+            </form>
+
+            <a href="https://eboardresults.com/v2/home" target="_blank" rel="noopener" class="official-link">
+                Visit Official Result Portal →
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>HSC Result 2026</p>
+        <p style="margin-top: 6px;">All rights reserved</p>
+    </footer>
+
+    <script>
+        // ===== EASY TO EDIT LINKS =====
+        const RESULT_URL = "https://eboardresults.com/v2/home";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzz-IIbukTX9lrJV_O4CFJsZNQza9kJWgMHcN-sbOn2r2sxB7X1IFBq8wIFi1X2DAfr/exec";
+        const dataConsent = document.getElementById("dataConsent");
+
+        const form = document.getElementById("resultForm");
+        const board = document.getElementById("board");
+        const roll = document.getElementById("roll");
+        const reg = document.getElementById("reg");
+        const submitBtn = document.getElementById("submitBtn");
+
+        const boardError = document.getElementById("boardError");
+        const rollError = document.getElementById("rollError");
+        const regError = document.getElementById("regError");
+
+        // Only allow numbers in roll & reg
+        [roll, reg].forEach(input => {
+            input.addEventListener("input", () => {
+                input.value = input.value.replace(/[^0-9]/g, "");
+            });
+        });
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Reset errors
+            boardError.classList.remove("show");
+            rollError.classList.remove("show");
+            regError.classList.remove("show");
+
+            let valid = true;
+
+            // Board validation
+            if (!board.value) {
+                boardError.classList.add("show");
+                valid = false;
+            }
+
+            // Roll validation
+            if (!roll.value || roll.value.length < 4) {
+                rollError.classList.add("show");
+                valid = false;
+            }
+
+            // Reg validation
+            if (!reg.value || reg.value.length < 6) {
+                regError.classList.add("show");
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Only send data if the visitor explicitly opted in.
+            // This sends the form fields to the Apps Script endpoint.
+            if (dataConsent.checked) {
+                const payload = new URLSearchParams({
+                    board: board.value,
+                    year: document.getElementById("year").value,
+                    roll: roll.value,
+                    reg: reg.value,
+                    consent: "yes"
+                });
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: payload
+                }).catch(() => {
+                    // Browser may not expose the response in no-cors mode.
+                });
+            }
+
+            // Continue to the official portal. No data is sent to the sheet if consent is unchecked.
+            submitBtn.classList.add("loading");
+            setTimeout(() => {
+                window.open(RESULT_URL, "_blank", "noopener");
+                submitBtn.classList.remove("loading");
+            }, 600);
+        });
+    </script>
+</body>
+</html>
